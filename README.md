@@ -19,3 +19,7 @@ GET rulegroup details
 GET rule details
 POST create rules
 Preq: must have source & destination client id & client secret with scope permission as Firewall Management Read & Write.
+
+# FwRgId.py
+simple script to fetch rule groups from a tenant
+Preq: must have cid, cs with scope permission of Firewall Management Read.
