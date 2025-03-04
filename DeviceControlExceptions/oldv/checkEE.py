@@ -70,39 +70,6 @@ def get_existing_combined_ids(bearer_token, policy_id):
             break
     return existing_combined_ids, policy_details.get("name")
 
-# Function to create USB device control exceptions
-def create_usb_exceptions(bearer_token, policy_id, combined_ids):
-    url = f"https://api.eu-1.crowdstrike.com/policy/entities/device-control/v1"
-    headers = {
-        "Authorization": f"Bearer {bearer_token}",
-        "Content-Type": "application/json"
-    }
-    exceptions = [{"combined_id": device_id, "action": "FULL_ACCESS", "description": "added by API on 28-FEB-2025"} for device_id in combined_ids]
-    payload = {
-        "resources": [
-            {
-                "id": policy_id,
-                "settings": {
-                    "classes": [
-                        {
-                            "id": "MASS_STORAGE",
-                            "exceptions": exceptions
-                        }
-                    ]
-                }
-            }
-        ]
-    }
-    response = requests.patch(url, headers=headers, data=json.dumps(payload))
-    response.raise_for_status()
-    logging.info(f"Created USB exceptions for policy {policy_id} with combined IDs: {combined_ids}")
-    print(f"Created USB exceptions for policy {policy_id} with combined IDs: {combined_ids}")
-    return response.json()
-
-# Read combined IDs from CSV
-combined_ids_df = pd.read_csv("combined_ids.csv")
-combined_ids = combined_ids_df["device_id"].tolist()
-
 # Read target CIDs from CSV
 target_cids_df = pd.read_csv("target_cids.csv")
 target_cids = target_cids_df["cid"].tolist()
@@ -115,7 +82,6 @@ home_cid_client_secret = os.getenv("HOME_CID_CLIENT_SECRET")
 policy_names = ["CyberSOC Windows-USB Monitor", "CyberSOC Windows-USB Block"]
 
 # Process each target CID for each policy
-excluded_ids = []
 for target_cid in target_cids:
     try:
         # Generate bearer token for the target CID
@@ -132,43 +98,19 @@ for target_cid in target_cids:
             # Get existing combined IDs from the policy
             existing_combined_ids, policy_name = get_existing_combined_ids(bearer_token, policy_id)
             
-            # Save existing exceptions to a csv file
-            os.makedirs("existingExceptions", exist_ok=True)
+            # Save existing exceptions to a CSV file
+            os.makedirs("SuperExistingExceptions", exist_ok=True)
             existing_exceptions_df = pd.DataFrame({"combined_id": existing_combined_ids, "policy_name": policy_name})
-            existing_exceptions_df.to_csv(f"existingExceptions/{target_cid}-{policy_name.replace(' ', '_')}-EE.csv", index=False)
-            
-            # Filter out combined IDs that already exist in the policy
-            new_combined_ids = [cid for cid in combined_ids if cid not in existing_combined_ids]
-            excluded_combined_ids = [cid for cid in combined_ids if cid in existing_combined_ids]
-            
-            # Log and save excluded combined IDs
-            for excluded_id in excluded_combined_ids:
-                excluded_ids.append({"combined_id": excluded_id, "policy_name": policy_name, "cid": target_cid})
-            
-            # Create exceptions for the target CID
-            if new_combined_ids:
-                response = create_usb_exceptions(bearer_token, policy_id, new_combined_ids)
-                logging.info(f"Exceptions created for CID {target_cid} under policy '{policy_name}'")
-                print(f"Exceptions created for CID {target_cid} under policy '{policy_name}'")
-            else:
-                logging.info(f"No new exceptions to add for CID {target_cid} under policy '{policy_name}'")
-                print(f"No new exceptions to add for CID {target_cid} under policy '{policy_name}'")
+            existing_exceptions_df.to_csv(f"SuperExistingExceptions/{target_cid}-{policy_name.replace(' ', '_')}-EE.csv", index=False)
             
             # Log and print summary for the target CID and policy
-            logging.info(f"Summary for CID {target_cid} under policy '{policy_name}': {len(new_combined_ids)} new exceptions added, {len(excluded_combined_ids)} existing exceptions excluded")
-            print(f"Summary for CID {target_cid} under policy '{policy_name}': {len(new_combined_ids)} new exceptions added, {len(excluded_combined_ids)} existing exceptions excluded")
+            logging.info(f"Exported existing exceptions for CID {target_cid} under policy '{policy_name}'")
+            print(f"Exported existing exceptions for CID {target_cid} under policy '{policy_name}'")
     except requests.exceptions.HTTPError as err:
         logging.error(f"HTTP error occurred for CID {target_cid}: {err}")
         print(f"HTTP error occurred for CID {target_cid}: {err}")
         print("Response content:", err.response.content)  # Print the response content for debugging
 
-# Save excluded combined IDs to CSV
-excluded_ids_df = pd.DataFrame(excluded_ids)
-if not os.path.isfile("excluded_combined_ids.csv"):
-    excluded_ids_df.to_csv("excluded_combined_ids.csv", index=False)
-else:
-    excluded_ids_df.to_csv("excluded_combined_ids.csv", mode='a', header=False, index=False)
-
 # Log and print final completion message
-logging.info("USB device control exceptions creation process completed.")
-print("USB device control exceptions creation process completed.")
+logging.info("Export of existing exceptions completed.")
+print("Export of existing exceptions completed.")

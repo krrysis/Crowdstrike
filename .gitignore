@@ -1,3 +1,8 @@
 # .gitignore file
 .env
 firewall_migration.log
+target_cids.csv
+combined_ids.csv
+usb_exceptions.log
+existingExceptions
+SuperExistingExceptions
