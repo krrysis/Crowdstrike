@@ -1,10 +1,12 @@
-#V1.3 introduces targeting both policies at once, monitor & block
 import requests
 import pandas as pd
 import json
 import logging
 import os
 from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configure logging to append to the log file
 logging.basicConfig(filename='usb_exceptions.log', level=logging.INFO, 
@@ -64,7 +66,7 @@ def get_existing_combined_ids(bearer_token, policy_id):
     existing_combined_ids = []
     for device_class in exceptions:
         if device_class["id"] == "MASS_STORAGE":
-            existing_combined_ids = [exception["combined_id"] for exception in device_class.get("exceptions", [])]
+            existing_combined_ids = [exception["combined_id"] for exception in device_class.get("exceptions", []) if "combined_id" in exception]
             break
     return existing_combined_ids, policy_details.get("name")
 
