@@ -4,5 +4,5 @@ FirewallManagement/firewall_migration.log
 DeviceControlExceptions/target_cids.csv
 DeviceControlExceptions/combined_ids.csv
 DeviceControlExceptions/usb_exceptions.log
-DeviceControlExceptions/existingExceptions
-DeviceControlExceptions/SuperExistingExceptions
+DeviceControlExceptions/existingExceptions/
+DeviceControlExceptions/SuperExistingExceptions/
