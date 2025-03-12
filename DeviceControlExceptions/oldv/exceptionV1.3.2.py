@@ -103,6 +103,7 @@ def create_usb_exceptions(bearer_token, policy_id, combined_ids, description):
 
 # Read combined IDs from CSV
 combined_ids_df = pd.read_csv("combined_ids.csv")
+#combined_ids_df = combined_ids_df.dropna(subset=['device_id'])  # Remove rows with NaN values in 'device_id'
 combined_ids = combined_ids_df["device_id"].tolist()
 
 # Read target CIDs from CSV
