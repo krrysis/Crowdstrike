@@ -1,0 +1,14 @@
+2025-03-13 19:01:16,255 - INFO - Generated bearer token for CID 8c6f8976c4ad47dcbad8171d467cf043
+2025-03-13 19:01:26,325 - INFO - Created USB exceptions for policy cbfa958a49864dee89501b8970a2c16b with combined IDs: ['5555_5555_5555AAAA']
+2025-03-13 19:01:26,332 - INFO - Exceptions created for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Monitor'
+2025-03-13 19:01:26,332 - INFO - Summary for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Monitor': 1 new exceptions added, 0 existing exceptions excluded
+2025-03-13 19:01:35,093 - INFO - Created USB exceptions for policy 90a70c733b074c23a3a8ca8d75daabf6 with combined IDs: ['5555_5555_5555AAAA']
+2025-03-13 19:01:35,106 - INFO - Exceptions created for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Block'
+2025-03-13 19:01:35,107 - INFO - Summary for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Block': 1 new exceptions added, 0 existing exceptions excluded
+2025-03-13 19:01:35,136 - INFO - USB device control exceptions creation process completed.
+2025-03-13 19:12:38,614 - INFO - Generated bearer token for CID 8c6f8976c4ad47dcbad8171d467cf043
+2025-03-13 19:12:42,746 - INFO - No new exceptions to add for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Monitor'
+2025-03-13 19:12:42,747 - INFO - Summary for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Monitor': 0 new exceptions added, 1 existing exceptions excluded
+2025-03-13 19:12:49,014 - INFO - No new exceptions to add for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Block'
+2025-03-13 19:12:49,015 - INFO - Summary for CID 8c6f8976c4ad47dcbad8171d467cf043 under policy 'CyberSOC Windows-USB Block': 0 new exceptions added, 1 existing exceptions excluded
+2025-03-13 19:12:49,027 - INFO - USB device control exceptions creation process completed.
