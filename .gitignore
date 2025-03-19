@@ -4,8 +4,13 @@ FirewallManagement/firewall_migration.log
 DeviceControlExceptions/target_cids.csv
 DeviceControlExceptions/combined_ids.csv
 DeviceControlExceptions/usb_exceptions.log
+DeviceControlExceptions/dist/target_cids.csv
+DeviceControlExceptions/dist/combined_ids.csv
+DeviceControlExceptions/dist/usb_exceptions.log
 DeviceControlExceptions/existingExceptions/
 DeviceControlExceptions/SuperExistingExceptions/
 DeviceControlExceptions/versioninfo.txt
+DeviceControlExceptions/dist/excluded_combined_ids.csv
 DeviceControlExceptions/excluded_combined_ids.csv
 DeviceControlExceptions/nonStandardCombinedIds.csv
+DeviceControlExceptions/dist/nonStandardCombinedIds.csv
