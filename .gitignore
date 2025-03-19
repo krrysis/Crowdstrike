@@ -7,3 +7,5 @@ DeviceControlExceptions/usb_exceptions.log
 DeviceControlExceptions/existingExceptions/
 DeviceControlExceptions/SuperExistingExceptions/
 DeviceControlExceptions/versioninfo.txt
+DeviceControlExceptions/excluded_combined_ids.csv
+DeviceControlExceptions/nonStandardCombinedIds.csv
