@@ -1,3 +1,5 @@
+#Author: kshitijshukla345@gmail.com
+#Description: This script is used to copy custom IOA rule groups and rules from one tenant to another tenant using multi-threading.
 import requests
 import re
 from oauth.csoauth import get_bearer
