@@ -14,3 +14,7 @@ DeviceControlExceptions/dist/excluded_combined_ids.csv
 DeviceControlExceptions/excluded_combined_ids.csv
 DeviceControlExceptions/nonStandardCombinedIds.csv
 DeviceControlExceptions/dist/nonStandardCombinedIds.csv
+CustomIOA/ioa_migration_multithread.log
+CustomIOA/dist/ioa_migration_multithread.log
+CustomIOA/ioaMTv1.4.0.spec
+CustomIOA/build

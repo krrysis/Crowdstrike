@@ -24,5 +24,8 @@ Preq: must have source & destination client id & client secret with scope permis
 simple script to fetch rule groups from a tenant
 Preq: must have cid, cs with scope permission of Firewall Management Read.
 
-# exceptionV1.3.1.py
+# exceptionV(n).py
 This script pushes Usb mass storage exceptions into hardcoded policy names. Contains checks to see if it already has that exception and skips it. It exports skipped combined_ids, existing combined_ids, logfile.
+
+# IoAMTV(n).py
+This script copies custom IOA rule groups along with rules from one cid to another
