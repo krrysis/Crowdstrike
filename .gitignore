@@ -19,3 +19,4 @@ CustomIOA/dist/ioa_migration_multithread.log
 CustomIOA/ioaMTv1.4.0.spec
 CustomIOA/build
 oauth/__pycache__
+pyinstaller
